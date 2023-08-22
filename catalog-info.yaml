@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: naveenkendyala-poi-map-app-dev
+  annotations:
+    argocd/app-name: naveenkendyala-poi-map-app-dev
+    backstage.io/kubernetes-id: naveenkendyala-poi-map-app
+    backstage.io/kubernetes-namespace: naveenkendyala
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-ms/naveenkendyala-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.igb2792k.eastus2.aroapp.io/dev-pipelines/ns/naveenkendyala/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.igb2792k.eastus2.aroapp.io/k8s/ns/naveenkendyala/deployments/naveenkendyala-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.igb2792k.eastus2.aroapp.io/#https://github.com/rhdh-ms/naveenkendyala-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://naveenkendyala-poi-map-app-naveenkendyala.apps.igb2792k.eastus2.aroapp.io
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/naveenkendyala"
+  system: workshop-system-naveenkendyala
+  consumesApis:
+    - gateway-api-naveenkendyala
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-naveenkendyala
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/naveenkendyala"
